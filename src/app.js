@@ -1,52 +1,66 @@
-const http = require('http');
-const url = require('url');
-const querystring = require('querystring');
+const express = require('express');
+const bodyParser = require('body-parser');
 const Model = require('./model');
+
+
+const app = express();
+app.use(bodyParser.json());
 
 const port = 8080;
 const model = new Model();
 
-function setResponse(response, statusCode, content) {
-    response.writeHead(statusCode, {"Content-Type": "application/json"});
-    response.write(content);
-    response.end();
-    return response;
+function notFound(response, id) {
+    response.status(404);
+    response.json({error: "No item with id " + id});
 }
 
-function getId(path) {
-    const pathParts = path.split('/');
-    if (pathParts.length < 3 || pathParts[2] === "") return 0;
-    return pathParts[2];
-}
 
-const server = http.createServer(function(request, response) {
-    const params = querystring.parse(url.parse(request.url).query);
-    const path = url.parse(request.url).pathname;
+app.get('/items', (request, response) => {
+    response.json(model.getAll());
+})
 
-    const itemId = getId(path);
+app.get('/items/:itemId', (request, response) => {
+    if (model.has(request.params.itemId)) {
+        response.json( model.get(request.params.itemId))
+    } else {
+        notFound(response, request.params.itemId);
+    }
+})
 
-    if (request.method == "GET") {
-        if (itemId && model.has(itemId)) {
-            setResponse(response, 200, model.get(itemId));
-        } else {
-            setResponse(response, 200, model.getAll());
-        }
+app.post('/items', (request, response) => {
+    const name = request.body.name ? request.body.name : request.query.name;
+    const category = request.body.category ? request.body.category : request.query.category;
+
+    const itemId = model.add(name, category);
+
+    response.status(201);
+    response.json(model.get(itemId));
+})
+
+app.put('/items/:itemId', (request, response) => {
+    if (!model.has(request.params.itemId)) {
+        notFound(response, request.params.itemId);
+        return;
     }
 
-    if (request.method == "POST") {
-        const itemId = model.add(params['name'], params['category']);
-        setResponse(response, 201, model.get(itemId));
-    }
+    const name = request.body.name ? request.body.name : request.query.name;
+    const category = request.body.category ? request.body.category : request.query.category;
 
-    if (request.method == "PUT") {
-        const itemId = model.add(params['name'], params['category']);
-        setResponse(response, 200, model.get(itemId));
-    }
+    const itemId = model.add(name, category);
 
-    if (request.method == "DELETE") {
-        model.delete(itemId);
-        setResponse(response, 204, JSON.stringify(new Object()));
+    response.status(201);
+    response.json(model.get(itemId));
+})
+
+app.delete('/items/:itemId', (request, response) => {
+    if (model.delete(request.params.itemId)) {
+        response.status(204);
+    } else {
+        notFound(response, request.params.itemId);
     }
+})
+
+
+app.listen(port, () => {
+    console.log('Express server listening on port 8080');
 });
-
-server.listen(port);
