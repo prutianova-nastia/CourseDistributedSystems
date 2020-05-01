@@ -1,20 +1,20 @@
-import Routes from './routes/itemRoute';
+import itemRouter from './routers/item';
+import authRouter from './routers/authorization';
 import express from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
-
-const mongoDB = 'mongodb://mongodb/items';
-const port = 8080;
+import config from './config';
 
 const init = async () => {
-    await mongoose.connect(mongoDB);
+    await mongoose.connect(config.db);
 
     const app = express();
     app.use(bodyParser.json());
 
-    app.use('/', Routes());
+    app.use('/', authRouter());
+    app.use('/items', itemRouter());
 
-    app.listen(port, () => {
+    app.listen(config.port, () => {
         console.log('started at 8080');
     });
 };
