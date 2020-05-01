@@ -6,20 +6,22 @@ import { invalidTokenResponse } from '../../utils/responses';
 
 export default async (request, response) => {
     const session = await Session.findOne({
-        refreshToken: request.headers.refresh,
+        refreshToken: request.body.refresh,
         refreshTokenExpireAt: {
             $gte: Date.now()
         }
     });
-    if(!session){
+    if(!session) {
         invalidTokenResponse(response, 'refresh');
     }
-    await session.remove();
     // @ts-ignore
-    const user = await User.findOne({id: session.userId});
+    const userId = session.userId;
+    // @ts-ignore
+    const user = await User.findOne({ _id: session.userId });
     // @ts-ignore
     const tokens = createTokens(session.userId, user.email);
-    await Session.create({
+    await session.remove();
+    Session.create({
         refreshToken: tokens.refreshToken,
         refreshTokenExpireAt: Date.now() + config.auth.refreshTokenExpiration,
         // @ts-ignore
