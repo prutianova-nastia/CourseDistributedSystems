@@ -10,14 +10,11 @@ export default async (request, response) => {
     if (!getId(request)) {
         return notFoundResponse(response, getId(request));
     }
-
-    Item.count({_id: getId(request)}).then(async count => {
-        if (count)  {
-            Item.findOneAndDelete({_id: getId(request)}).then(() => {
-                response.status(204).send();
-            });
-        } else {
-            notFoundResponse(response, getId(request));
-        }
-    });
+    try {
+        await Item.findOneAndDelete({_id: getId(request)}).then(() => {
+            response.status(204).send();
+        });
+    } catch (error) {
+        notFoundResponse(response, getId(request));
+    }
 }

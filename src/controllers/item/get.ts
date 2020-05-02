@@ -10,13 +10,11 @@ export default async (request , response) => {
     if (!getId(request)) {
         return notFoundResponse(response, getId(request));
     }
-    Item.count({_id: getId(request)}).then(async count => {
-        if (count)  {
-            Item.find({_id: getId(request)}).then(doc => {
-                response.json(doc).send();
-            });
-        } else {
-            notFoundResponse(response, getId(request));
-        }
-    });
+    try {
+        await Item.find({_id: getId(request)}).then(doc => {
+            response.json(doc).send();
+        });
+    } catch (error) {
+        notFoundResponse(response, getId(request));
+    }
 }
