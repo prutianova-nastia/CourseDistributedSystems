@@ -10,17 +10,15 @@ export default async (request, response) => {
     if (!getId(request)) {
         return notFoundResponse(response, getId(request));
     }
-    Item.count({_id: getId(request)}).then(async count => {
-        if (count)  {
-            Item.update({_id: getId(request)}, {
-                name: getName(request),
-                category: getCategory(request)
-            }).then((doc) => {
-                response.json(doc)
-                    .status(200).send();
-            })
-        } else {
-            notFoundResponse(response, getId(request));
-        }
-    });
+    try {
+        await Item.update({_id: getId(request)}, {
+            name: getName(request),
+            category: getCategory(request)
+        }).then((doc) => {
+            response.json(doc)
+                .status(200).send();
+        });
+    } catch (error) {
+        notFoundResponse(response, getId(request));
+    }
 }

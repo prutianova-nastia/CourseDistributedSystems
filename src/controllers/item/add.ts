@@ -7,7 +7,6 @@ export default async (request , response) => {
     if (!validate(request)) {
         return invalidTokenResponse(response, 'access');
     }
-
     Item.create({
         name: getName(request),
         category: getCategory(request)
