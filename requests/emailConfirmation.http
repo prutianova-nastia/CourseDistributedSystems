@@ -1,0 +1,21 @@
+POST http://localhost:8080/signup
+Content-Type: application/json
+
+{
+  "username": "newUser-",
+  "password": "EasyPassword",
+  "email": "auprutyanova@gmail.com"
+}
+
+###
+
+POST http://localhost:8080/signin
+Content-Type: application/json
+
+{
+  "username": "u10",
+  "password": "EasyPassword"
+}
+
+###
+

@@ -1,1 +1,66 @@
 GET http://localhost:8080/items/
+Content-Type: application/json
+
+###
+
+POST http://localhost:8080/signup
+Content-Type: application/json
+
+{
+  "username": "u10",
+  "password": "EasyPassword",
+  "email": "auprutyanova@gmail.com"
+}
+
+###
+
+POST http://localhost:8080/signup
+Content-Type: application/json
+
+{
+  "username": "USer_2",
+  "password": "EasyPassword",
+  "email": "mail"
+}
+
+###
+
+POST http://localhost:8080/signin
+Content-Type: application/json
+
+{
+  "username": "SecondUser",
+  "password": "EasyPassword"
+}
+
+###
+
+GET http://localhost:8080/items/
+Content-Type: application/json
+
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJJZCI6IjVlYWM5MzJkZmI4OTYyMDAxOTQ0MzI1MiJ9LCJpYXQiOjE1ODg0MTAyNTgsImV4cCI6MTU4ODQxMDU1OH0.Wn3FIWnMC0HN-eFoIScL1iMzu-QpZUUjDlAGlkqZKhk"
+}
+
+### "refresh": "ccca7d78a23c768c3cafb7b35d6677691349d9df132912c6a9a31e949a5aa599"
+
+###
+
+GET http://localhost:8080/items/
+Content-Type: application/json
+
+{
+
+  "token": "12343"
+}
+
+###
+
+POST http://localhost:8080/refresh
+Content-Type: application/json
+
+{
+  "refresh": "7aea954573546024313631dbd17dfcc720d6891306f935a7b143a2e6b483decd"
+}
+
+###

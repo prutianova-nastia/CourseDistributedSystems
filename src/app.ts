@@ -4,8 +4,10 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import config from './config';
+import getChannel from './rabbitMQ/connectRabbit';
 
 const init = async () => {
+    config.amqp.channel = await getChannel();
     await mongoose.connect(config.db);
 
     const app = express();
@@ -20,3 +22,4 @@ const init = async () => {
 };
 
 init();
+
