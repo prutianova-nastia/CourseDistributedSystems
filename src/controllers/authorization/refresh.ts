@@ -15,20 +15,21 @@ export default async (request, response) => {
         invalidTokenResponse(response, 'refresh');
     }
     // @ts-ignore
-    const userId = session.userId;
-    // @ts-ignore
-    const user = await User.findOne({ _id: session.userId });
-    // @ts-ignore
-    const tokens = createTokens(session.userId, user.email);
+    const sessionUserId = session.userId;
     await session.remove();
+    // @ts-ignore
+    const user = await User.findOne({ _id: sessionUserId });
+    // @ts-ignore
+    const tokens = createTokens(sessionUserId, user.email);
     Session.create({
         refreshToken: tokens.refreshToken,
         refreshTokenExpireAt: Date.now() + config.auth.refreshTokenExpiration,
         // @ts-ignore
-        userId: session.userId
-    });
-    response.send({
-        access: tokens.accessToken,
-        refresh: tokens.refreshToken
-    });
+        userId: sessionUserId
+    }).then(() =>{
+        response.send({
+            access: tokens.accessToken,
+            refresh: tokens.refreshToken
+        });
+    })
 }

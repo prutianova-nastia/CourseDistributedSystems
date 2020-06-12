@@ -1,38 +1,74 @@
 GET http://localhost:8080/items/
-
-###
-
-POST http://localhost:8080/items
 Content-Type: application/json
 
 {
-    "name" : "computer",
-    "category" : "smth"
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJJZCI6IjVlZTI0ZjcyNDE1NzNlMDAxMjM0YzQwZSJ9LCJpYXQiOjE1OTE4ODk3OTAsImV4cCI6MTU5MjE4OTc5MH0.6TSilkIC2yNgbo4McJ15YBprDrsZSIB8VV_zPveIN5Q"
+}
+
+###
+
+POST http://localhost:8080/items/
+Content-Type: application/json
+
+{
+  "name" : "my_omputer",
+  "category" : "smth",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJJZCI6IjVlYWM3ZmM4MmZmN2Y2MDAxOTI1ZTc0YSJ9LCJpYXQiOjE1ODgzNjMyMjgsImV4cCI6MTU4ODY2MzIyOH0.ZxyUdLkI-1suuTE929nmuFW_JodKyulVKaMcfRsTFPk"
 }
 
 ###
 
 GET http://localhost:8080/items
+Content-Type: application/json
+
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJJZCI6IjVlYWM3ZmM4MmZmN2Y2MDAxOTI1ZTc0YSJ9LCJpYXQiOjE1ODgzNjMyMjgsImV4cCI6MTU4ODY2MzIyOH0.ZxyUdLkI-1suuTE929nmuFW_JodKyulVKaMcfRsTFPk"
+}
 
 ###
 
-POST http://localhost:8080/items?name=TV_1
+POST http://localhost:8080/items?name=TV_2
+Content-Type: application/json
+
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJJZCI6IjVlYWM3ZmM4MmZmN2Y2MDAxOTI1ZTc0YSJ9LCJpYXQiOjE1ODgzNjMyMjgsImV4cCI6MTU4ODY2MzIyOH0.ZxyUdLkI-1suuTE929nmuFW_JodKyulVKaMcfRsTFPk"
+}
 
 ###
 
-GET http://localhost:8080/items/2
+GET http://localhost:8080/items/5ead37f9301ac3001ae8e35e
+Content-Type: application/json
+
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJJZCI6IjVlYWM3ZmM4MmZmN2Y2MDAxOTI1ZTc0YSJ9LCJpYXQiOjE1ODgzNjMyMjgsImV4cCI6MTU4ODY2MzIyOH0.ZxyUdLkI-1suuTE929nmuFW_JodKyulVKaMcfRsTFPk"
+}
 
 ###
 
-PUT http://localhost:8080/items/2?category=cat
+PUT http://localhost:8080/items/5ead37f9301ac3001ae8e35e?category=cat
+Content-Type: application/json
+
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJJZCI6IjVlYWM3ZmM4MmZmN2Y2MDAxOTI1ZTc0YSJ9LCJpYXQiOjE1ODgzNjMyMjgsImV4cCI6MTU4ODY2MzIyOH0.ZxyUdLkI-1suuTE929nmuFW_JodKyulVKaMcfRsTFPk"
+}
 
 ###
 
-GET http://localhost:8080/items
+GET http://localhost:8080/items/5eac806d2ff7f6001925e74c
+Content-Type: application/json
+
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJJZCI6IjVlYWM3ZmM4MmZmN2Y2MDAxOTI1ZTc0YSJ9LCJpYXQiOjE1ODgzNjMyMjgsImV4cCI6MTU4ODY2MzIyOH0.ZxyUdLkI-1suuTE929nmuFW_JodKyulVKaMcfRsTFPk"
+}
 
 ###
 
-DELETE http://localhost:8080/items/1/
+DELETE http://localhost:8080/items/5ead37f9301ac3001ae8e35e/
+Content-Type: application/json
+
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJJZCI6IjVlYWM3ZmM4MmZmN2Y2MDAxOTI1ZTc0YSJ9LCJpYXQiOjE1ODgzNjMyMjgsImV4cCI6MTU4ODY2MzIyOH0.ZxyUdLkI-1suuTE929nmuFW_JodKyulVKaMcfRsTFPk"
+}
 
 ###
 

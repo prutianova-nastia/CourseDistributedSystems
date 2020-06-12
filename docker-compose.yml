@@ -6,8 +6,23 @@ services:
       - "8080:8080"
     depends_on:
       - mongodb
+      - rabbitmq
 
   mongodb:
     image: mongo
     ports:
       - "27017:27017"
+
+  rabbitmq:
+    image: rabbitmq:3.7.4
+    ports:
+      - "5672:5672"
+
+  notifications:
+    build:
+      context: notifications
+    ports:
+      - "8002:8002"
+    depends_on:
+      - rabbitmq
+
