@@ -1,0 +1,58 @@
+POST http://localhost:8081/signup
+Content-Type: application/json
+
+{
+  "username": "hithere",
+  "password": "EasyPassword",
+  "email": "auprutyanova@gmail.com"
+}
+
+###
+
+POST http://localhost:8081/signin
+Content-Type: application/json
+
+{
+  "username": "hithere",
+  "password": "EasyPassword"
+}
+
+###
+
+GET http://localhost:8080/items/
+Content-Type: application/json
+
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJJZCI6IjVlZTRhNTk3MzM4ZTRhMDAxMzk3YTRjZCJ9LCJpYXQiOjE1OTIwNDI5MTMsImV4cCI6MTU5MjM0MjkxM30.8NISeEiqRWiQ45x_w1OjkZarSel0IWnGtib1fELYF_I"
+}
+
+###
+
+POST http://localhost:8081/signin
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "adminPassword"
+}
+
+###
+
+POST http://localhost:8080/items?name=TV_2
+Content-Type: application/json
+
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJJZCI6IjVlZTRhNTk3MzM4ZTRhMDAxMzk3YTRjZCJ9LCJpYXQiOjE1OTIwNDI5OTUsImV4cCI6MTU5MjM0Mjk5NX0.s8__dLmPCE2k51ihGbiNrGwmz1nBbx_nw1zgqEpI-6Q"
+}
+
+###
+
+POST http://localhost:8081/addAdmin
+Content-Type: application/json
+
+{
+  "username": "hithere",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJJZCI6IjVlZTQ5M2I0NWI3ZTAwMDAxMzA5OWRjMCJ9LCJpYXQiOjE1OTIwNDI5NjQsImV4cCI6MTU5MjM0Mjk2NH0.dUIdaj6cIDkuWDsLpK2A8y9HG1zj14o1TvuYHFB0MfY"
+}
+
+###
