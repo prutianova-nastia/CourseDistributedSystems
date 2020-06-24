@@ -19,7 +19,6 @@ async function is_admin(request) {
         // @ts-ignore
         admin = session.admin;
     }
-    console.log(valid, admin);
     return admin;
 }
 
@@ -30,8 +29,6 @@ export default async (request, response) => {
         }).catch(error =>  {
             response.json({error: "Wrong username"}).send();
         });
-
-        // console.log("user id: ", user.id);
 
         // @ts-ignore
         await User.update({ _id: user.id }, {
@@ -46,14 +43,6 @@ export default async (request, response) => {
             response.json(doc)
                 .status(200).send();
         });
-
-        // const user1 = await User.findOne({
-        //     username: getUsername(request),
-        // }).catch(error =>  {
-        //     response.json({error: "Wrong username"}).send();
-        // });
-        // // @ts-ignore
-        // console.log(user1.admin, user1.username);
     } else {
         response.json({error: "No permitions"}).send();
     }
