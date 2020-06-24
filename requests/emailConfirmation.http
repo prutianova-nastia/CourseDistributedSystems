@@ -1,19 +1,19 @@
-POST http://localhost:8080/signup
+POST http://localhost:8081/signup
 Content-Type: application/json
 
 {
-  "username": "newUser-",
+  "username": "newUser32",
   "password": "EasyPassword",
   "email": "auprutyanova@gmail.com"
 }
 
 ###
 
-POST http://localhost:8080/signin
+POST http://localhost:8081/signin
 Content-Type: application/json
 
 {
-  "username": "u10",
+  "username": "newUser32",
   "password": "EasyPassword"
 }
 
