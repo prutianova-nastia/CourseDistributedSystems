@@ -11,9 +11,7 @@ import addAdmin from './utils/add_admin';
 const init = async () => {
     config.amqp.channel = await getChannel();
     await mongoose.connect(config.db);
-
-
-    // addAdmin();
+    await addAdmin();
 
     const app = express();
     app.use(bodyParser.json());
@@ -25,6 +23,5 @@ const init = async () => {
     startRpcServer();
 };
 
-console.log("here we are");
 
 init();
